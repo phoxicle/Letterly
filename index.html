@@ -1,0 +1,75 @@
+<head>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+
+var showLetter = function(el){
+	el.fadeIn();
+	setTimeout(function() { 
+		if(el.next()) 
+			showLetter(el.next()); 
+	}, 50);
+}
+
+$(function() {
+
+	var r = Math.random();
+	//if(r > .95) $('#visible').addClass('cur');
+
+	var str = "Dear Reader,*Lorem ipsum dolor sit amet. The quick brown fox jumped over the fence. And so forth.*Christine";
+
+	var hash = window.location.hash;
+	if(hash) str = hash.substring(1);
+	window.location.hash = '';	
+
+	for(var i=0; i<str.length; i++){
+		if(str[i]=="*")
+			$('#visible').append('<br/><br/>');
+		else if(str[i]=="+")
+			$('#visible').append(' ');
+		else
+			$('#visible').append($('<span>'+str[i]+'</span>'));	
+	}
+	
+	showLetter($('#visible span').first());
+});
+
+</script>
+
+<style>
+
+
+@font-face {
+  font-family: cur;
+  src: url('INKITMT_.otf') format('opentype');
+}
+
+@font-face {
+  font-family: curtwo;
+  src: url('Shit Happens trial__.otf') format('opentype');
+}
+
+body{
+background: white url('http://pheide.com/images/fern_watermark.png') no-repeat fixed;
+font-family: curtwo, cursive;  
+font-size:2.5em;
+line-height: 1em;
+margin:100px;
+}
+
+span{
+display:none;
+}
+
+#visible.cur {
+font-family: cur;
+}
+
+</style>
+
+
+</head>
+<body>
+<div id="visible">
+</div>
+</body>

@@ -1,0 +1,44 @@
+<head>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script type="text/javascript">
+
+$(function() {
+
+$('#gen').click(function(){
+
+	var str = $('#text').val();
+	str = str.replace(/ /g,'+');
+	str = str.replace(/\n\r?/g,'*');
+
+	str = '/letterly/#'+str;
+	$('#link').text(str);
+	$('#link').attr('href',str);
+		
+});
+
+});
+
+</script>
+
+<style>
+
+
+body{
+background: white url('http://pheide.com/images/fern_watermark.png') no-repeat fixed;
+margin:100px;
+}
+
+span{
+display:none;
+}
+
+</style>
+
+
+</head>
+<body>
+<textarea id="text" rows=10 cols=100></textarea>
+<a href="javascript:void(0)" id="gen">Generate Link</a>
+<div><a id="link" target="_blank" /></div>
+</body>
